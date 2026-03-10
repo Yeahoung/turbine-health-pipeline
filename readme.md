@@ -121,7 +121,7 @@ project_root
 
 The report generation stage uses a fine-tuned local model:
 
-Fine turned model : auto download from [text](https://huggingface.co/LAND223/qwen_0_5_fine_report_generator)
+Fine turned model : auto download from [qwen_0_5_fine_report_generator](https://huggingface.co/LAND223/qwen_0_5_fine_report_generator)
 
 The model is loaded using HuggingFace `transformers`.
 
