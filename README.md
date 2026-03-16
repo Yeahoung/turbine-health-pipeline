@@ -1,3 +1,14 @@
+---
+title: Turbine Health Pipeline Demo
+emoji: 🌬️
+colorFrom: blue
+colorTo: green
+sdk: streamlit
+sdk_version: 1.33.0
+app_file: app.py
+pinned: false
+---
+
 # Wind Turbine Daily Health Pipeline
 
 A lightweight pipeline for extracting wind turbine SCADA anomalies, aggregating daily health metadata, and generating short maintenance-oriented reports using a fine-tuned local language model.
