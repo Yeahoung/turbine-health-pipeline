@@ -11,15 +11,22 @@ st.set_page_config(page_title="Turbine Health Monitor", page_icon="🌬️", lay
 st.title("🌬️ Wind Turbine Health Monitor")
 st.write("A lightweight pipeline for extracting wind turbine SCADA anomalies and generating AI-powered maintenance reports.")
 
-# IMPORTANT NOTE: In Hugging Face spaces demo, users must provide their own alarm dict
-st.warning("Please upload both SCADA Data and the Alarm Description Dictionary.")
+# IMPORTANT NOTE: In Hugging Face spaces demo, users must provide their own alarm dict or use default
+st.warning("Please upload both SCADA Data and the Alarm Description Dictionary, or enable the Default Demo Data.")
 
 col1, col2 = st.columns([1, 2])
 
 with col1:
     st.header("1. Upload Data")
-    uploaded_scada = st.file_uploader("Upload SCADA Data (CSV)", type="csv")
-    uploaded_alarm = st.file_uploader("Upload Alarm Description (CSV)", type="csv")
+    use_default = st.toggle("Use Default Demo Data", value=False, help="Click to use the built-in demo datasets without uploading.")
+    
+    if not use_default:
+        uploaded_scada = st.file_uploader("Upload SCADA Data (CSV)", type="csv")
+        uploaded_alarm = st.file_uploader("Upload Alarm Description (CSV)", type="csv")
+    else:
+        st.info("Using built-in demo datasets (2016-01-01).")
+        uploaded_scada = None
+        uploaded_alarm = None
     
     st.header("2. Pipeline Settings")
     time_gap = st.slider("Anomaly Time Gap (minutes)", 1, 60, 10, help="Time gap to merge continuous abnormal events.")
@@ -31,19 +38,23 @@ with col2:
     st.header("3. Pipeline Results")
     
     if run_btn:
-        if uploaded_scada is None or uploaded_alarm is None:
+        if not use_default and (uploaded_scada is None or uploaded_alarm is None):
             st.error("Please upload BOTH the SCADA CSV data AND the Alarm Description CSV.")
         else:
             with st.spinner("Pipeline running... This might take a minute as the AI generates the report."):
                 
-                with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp_scada, \
-                     tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp_alarm:
-                    
-                    tmp_scada.write(uploaded_scada.getvalue())
-                    tmp_scada_path = tmp_scada.name
-                    
-                    tmp_alarm.write(uploaded_alarm.getvalue())
-                    tmp_alarm_path = tmp_alarm.name
+                if use_default:
+                    tmp_scada_path = "data/demo/2016_01_01.csv"
+                    tmp_alarm_path = "data/demo/Hill_of_Towie_alarms_description.csv"
+                else:
+                    with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp_scada, \
+                         tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp_alarm:
+                        
+                        tmp_scada.write(uploaded_scada.getvalue())
+                        tmp_scada_path = tmp_scada.name
+                        
+                        tmp_alarm.write(uploaded_alarm.getvalue())
+                        tmp_alarm_path = tmp_alarm.name
                 
                 try:
                     # Step 1: Anomaly Extraction
@@ -118,5 +129,6 @@ with col2:
                 except Exception as e:
                     st.error(f"Error during execution: {e}")
                 finally:
-                    if os.path.exists(tmp_scada_path): os.remove(tmp_scada_path)
-                    if os.path.exists(tmp_alarm_path): os.remove(tmp_alarm_path)
+                    if not use_default:
+                        if os.path.exists(tmp_scada_path): os.remove(tmp_scada_path)
+                        if os.path.exists(tmp_alarm_path): os.remove(tmp_alarm_path)
