@@ -94,20 +94,27 @@ with col2:
                         
                         # Display Results
                         st.subheader("📊 Output Reports")
-                        for idx, row in reports_df.iterrows():
-                            indicator = "🟢" if row['health_label'] == 'HEALTHY' else "🟡" if row['health_label'] == 'ATTENTION' else "🔴"
+                        
+                        # Merge text reports with the metadata so we have all columns available
+                        merged_df = pd.merge(reports_df, daily_meta_df, on=["StationId", "date"], how="left")
+                        
+                        for idx, row in merged_df.iterrows():
+                            # health_label comes from daily_meta_df now
+                            h_label = row.get('health_label', 'UNKNOWN')
+                            indicator = "🟢" if h_label == 'NORMAL' else "🟡" if h_label in ['INFO', 'ATTENTION'] else "🔴"
                             
-                            with st.expander(f"{indicator} Turbine {row['StationId']} - {row['date']} (Status: {row['health_label']})", expanded=True):
+                            with st.expander(f"{indicator} Turbine {row['StationId']} - {row['date']} (Status: {h_label})", expanded=True):
                                 col_a, col_b = st.columns([1, 1])
                                 with col_a:
                                     st.markdown("**📋 AI Maintenance Report:**")
                                     st.info(row['report_text'])
                                 with col_b:
                                     st.markdown("**⚙️ Metadata Summary:**")
-                                    st.markdown(f"- **Alarm Events (Level 3):** {row['severity_3_events']}")
-                                    st.markdown(f"- **Attention Events (Level 2):** {row['severity_2_events']}")
-                                    st.markdown(f"- **Total Abnormal Duration:** {row['total_abnormal_duration_minutes']:.1f} minutes")
-                                    st.markdown(f"- **Unique Alarm Codes:** `{row['unique_alarm_codes']}`")
+                                    st.markdown(f"- **Stopping Events (ALARM):** {row['stopping_event_count']}")
+                                    st.markdown(f"- **Total Abnormal Events:** {row['event_count']}")
+                                    st.markdown(f"- **Total Abnormal Duration:** {row['total_abnormal_minutes']:.1f} minutes")
+                                    st.markdown(f"- **Unique Alarm Codes:** `{row['alarm_codes']}`")
+                                    st.markdown(f"- **Top Severity:** {row['top_severity']}")
                 except Exception as e:
                     st.error(f"Error during execution: {e}")
                 finally:
