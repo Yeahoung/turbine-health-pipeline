@@ -16,6 +16,7 @@ def main():
     extract_result = extractor.run()
 
     metadata_builder = DailyMetadataBuilder(
+        
         DailyMetadataBuilderConfig(
             output_root="out",
             save_outputs=True,

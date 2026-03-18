@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Training outputs
+models/
+logs/
+results/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+nul
+*.log

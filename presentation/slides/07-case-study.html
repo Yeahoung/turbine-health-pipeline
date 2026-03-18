@@ -1,0 +1,54 @@
+<div class="slide-inner shell section-shell">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Example Turbine-Day Briefings</div>
+      <h2>Three cases showing health-aware operator guidance.</h2>
+    </div>
+    <p>
+      The goal is not only anomaly detection. The briefing should clarify what operators should do next under each health condition.
+    </p>
+  </div>
+  <div class="turbine-grid">
+    <article class="turbine-card">
+      <div class="panel-title" style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-triangle-exclamation slide-icon slide-icon-gold"></i>Turbine A</div>
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:start;"><h3>ATTENTION state</h3><span class="badge attention">Constrained</span></div>
+      <p>Abnormal event lasted several hours, with alarm code detected.</p>
+      <div class="metric-row">
+        <span class="metric-pill">Health: ATTENTION</span>
+        <span class="metric-pill">Long abnormal duration</span>
+      </div>
+      <div class="stack">
+        <div class="mini-panel"><h4>Recommended action</h4><p>Review SCADA logs and confirm turbine operational status.</p></div>
+        <div class="mini-panel"><h4>Control policy</h4><p>RL is allowed only as limited advisory support.</p></div>
+      </div>
+    </article>
+    <article class="turbine-card">
+      <div class="panel-title" style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-circle-xmark slide-icon slide-icon-red"></i>Turbine B</div>
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:start;"><h3>ALARM state</h3><span class="badge alarm">Disabled</span></div>
+      <p>Stopping event triggered with pitch lubrication alarm.</p>
+      <div class="metric-row">
+        <span class="metric-pill">Health: ALARM</span>
+        <span class="metric-pill">Stop event present</span>
+      </div>
+      <div class="stack">
+        <div class="mini-panel"><h4>Recommended action</h4><p>Inspect pitch lubrication system and prioritize maintenance.</p></div>
+        <div class="mini-panel"><h4>Control policy</h4><p>RL optimization is disabled in alarm state.</p></div>
+      </div>
+    </article>
+    <article class="turbine-card">
+      <div class="panel-title" style="display: flex; align-items: center; gap: 8px;"><i class="fa-solid fa-circle-xmark slide-icon slide-icon-red"></i>Turbine C</div>
+      <div style="display:flex;justify-content:space-between;gap:10px;align-items:start;"><h3>Repeated ALARM pattern</h3><span class="badge alarm">Disabled</span></div>
+      <p>Repeated pitch system alarms indicate persistent maintenance priority.</p>
+      <div class="metric-row">
+        <span class="metric-pill">Health: ALARM</span>
+        <span class="metric-pill">Repeated alarm family</span>
+      </div>
+      <div class="stack">
+        <div class="mini-panel"><h4>Recommended action</h4><p>Launch maintenance investigation before optimization discussion.</p></div>
+        <div class="mini-panel"><h4>Control policy</h4><p>Optimization advice is suppressed until condition recovery.</p></div>
+      </div>
+    </article>
+  </div>
+  <div class="callout-row"><button class="callout-btn" data-target="slide-8">Jump to explainable AI</button></div>
+  <div class="footer-tag"><strong>Takeaway</strong>The same architecture produces different operator actions for different health states.</div>
+</div>

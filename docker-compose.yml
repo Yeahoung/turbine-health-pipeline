@@ -1,0 +1,8 @@
+services:
+  turbine-health:
+    build: .
+    ports:
+      - "8080:80"
+    # Optional: mount data for demo files
+    volumes:
+      - ./data:/app/data:ro
