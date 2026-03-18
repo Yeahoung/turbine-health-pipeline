@@ -5,3 +5,5 @@ __pycache__/
 .streamlit/
 data/raw/
 .DS_Store
+# HF Spaces rejects binary files in git
+presentation/plots/*.png
