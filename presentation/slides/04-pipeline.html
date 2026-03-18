@@ -1,0 +1,116 @@
+<div class="slide-inner shell section-shell">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">System Pipeline</div>
+      <h2>Five stages, one operator-facing story.</h2>
+    </div>
+    <p>
+      The architecture operates as a single, cohesive decision-support chain.
+      Click the stages below to see how data flows through the system.
+    </p>
+  </div>
+  <div class="architecture-figure" id="architectureFigure" data-highlight="main-1">
+    <svg viewBox="0 0 1180 360" role="img" aria-label="Integrated pipeline architecture diagram">
+      <defs>
+        <marker id="arrowMain" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z" fill="rgba(15, 124, 130, 0.78)"></path>
+        </marker>
+        <marker id="arrowAdvisory" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+          <path d="M0,0 L10,4 L0,8 Z" fill="rgba(210, 100, 59, 0.85)"></path>
+        </marker>
+        <marker id="arrowLoop" markerWidth="9" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0,0 L9,4 L0,8 Z" fill="rgba(22, 33, 38, 0.65)"></path>
+        </marker>
+      </defs>
+
+      <rect class="arch-node main" data-node="raw" x="25" y="98" width="150" height="70" rx="14"></rect>
+      <text class="arch-label" x="100" y="126" text-anchor="middle">SCADA Raw Data</text>
+      <text class="arch-note" x="100" y="146" text-anchor="middle">turbine telemetry</text>
+
+      <rect class="arch-node main" data-node="extract" x="215" y="98" width="168" height="70" rx="14"></rect>
+      <text class="arch-label" x="299" y="126" text-anchor="middle">Anomaly Extraction</text>
+      <text class="arch-note" x="299" y="146" text-anchor="middle">events and alarms</text>
+
+      <rect class="arch-node main" data-node="metadata" x="423" y="98" width="172" height="70" rx="14"></rect>
+      <text class="arch-label" x="509" y="126" text-anchor="middle">Daily Metadata</text>
+      <text class="arch-note" x="509" y="146" text-anchor="middle">health_label + features</text>
+
+      <rect class="arch-node main" data-node="llm" x="635" y="98" width="188" height="70" rx="14"></rect>
+      <text class="arch-label" x="729" y="126" text-anchor="middle">LLM Maintenance Summary</text>
+      <text class="arch-note" x="729" y="146" text-anchor="middle">explainable report text</text>
+
+      <rect class="arch-node gate" data-node="gate" x="863" y="98" width="156" height="70" rx="14"></rect>
+      <text class="arch-label" x="941" y="118" text-anchor="middle">Health Gate</text>
+      <text class="arch-note" x="941" y="136" text-anchor="middle">ALARM / ATTENTION</text>
+      <text class="arch-note" x="941" y="151" text-anchor="middle">/ NORMAL</text>
+
+      <rect class="arch-node output" data-node="briefing" x="1059" y="98" width="114" height="70" rx="14"></rect>
+      <text class="arch-label" x="1116" y="122" text-anchor="middle">Operator</text>
+      <text class="arch-label" x="1116" y="139" text-anchor="middle">Briefing</text>
+      <text class="arch-note" x="1116" y="156" text-anchor="middle">human review</text>
+
+      <rect class="arch-node advisory" data-node="rl" x="539" y="248" width="180" height="74" rx="14"></rect>
+      <text class="arch-label" x="629" y="277" text-anchor="middle">RL Advisory Module</text>
+      <text class="arch-note" x="629" y="296" text-anchor="middle">simulation-backed policy</text>
+
+      <path class="arch-line-main" d="M175 133 L215 133"></path>
+      <path class="arch-line-main" d="M383 133 L423 133"></path>
+      <path class="arch-line-main" d="M595 133 L635 133"></path>
+      <path class="arch-line-main" d="M823 133 L863 133"></path>
+      <path class="arch-line-main" d="M1019 133 L1059 133"></path>
+
+      <path class="arch-line-advisory" d="M509 168 C509 220, 560 210, 560 248"></path>
+      <path class="arch-line-advisory" d="M729 168 C729 220, 698 210, 698 248"></path>
+      <path class="arch-line-advisory" d="M719 285 C845 285, 915 230, 941 168"></path>
+
+      <path class="arch-line-loop" d="M1116 168 C1116 350, 890 350, 650 322"></path>
+      <text class="arch-note" x="890" y="340" text-anchor="middle">human-in-the-loop validation and feedback</text>
+    </svg>
+    <div class="arch-legend">
+      <span data-highlight-target="main-1"><i class="legend-dot legend-main"></i>Main operational data flow</span>
+      <span data-highlight-target="advisory"><i class="legend-dot legend-advisory"></i>Simulation-backed advisory
+        flow</span>
+      <span data-highlight-target="loop"><i class="legend-dot legend-loop"></i>Operator feedback loop</span>
+    </div>
+  </div>
+  <div class="stage-grid" id="stageGrid">
+    <article class="stage-card active" data-step="01" data-highlight="main-1">
+      <div class="stage-tag">Detection</div>
+      <h3>SCADA anomaly extraction</h3>
+      <p>Raw rows are scanned for alarm codes, stop flags, and abnormal operating signals.</p>
+      <div class="stage-out">Output: anomaly rows and grouped events</div>
+    </article>
+    <article class="stage-card" data-step="02" data-highlight="main-2">
+      <div class="stage-tag">Aggregation</div>
+      <h3>Daily health metadata</h3>
+      <p>Events are converted into interpretable turbine-day indicators such as duration, severity, and health label.
+      </p>
+      <div class="stage-out">Output: a clean metadata table for engineering interpretation</div>
+    </article>
+    <article class="stage-card" data-step="03" data-highlight="main-4">
+      <div class="stage-tag">Explanation</div>
+      <h3>LLM maintenance report</h3>
+      <p>The language model turns metadata into a concise maintenance summary with advice for the operator.</p>
+      <div class="stage-out">Output: natural-language diagnosis support</div>
+    </article>
+    <article class="stage-card" data-step="04" data-highlight="main-5">
+      <div class="stage-tag">Gate</div>
+      <h3>RL advisory control filter</h3>
+      <p>Health status determines whether the optimization layer is blocked, constrained, or allowed as advisory only.
+      </p>
+      <div class="stage-out">Output: a safe optimization posture</div>
+    </article>
+    <article class="stage-card" data-step="05" data-highlight="main-6">
+      <div class="stage-tag">Action</div>
+      <h3>Unified operator briefing</h3>
+      <p>The final page combines alarms, explanation, RL posture, and the next human action.</p>
+      <div class="stage-out">Output: one actionable briefing instead of fragmented tools</div>
+    </article>
+  </div>
+  <div class="callout-row">
+    <button class="callout-btn" data-target="slide-7">Jump to case study</button>
+    <button class="callout-btn" id="cycleArchitecture">Cycle highlights</button>
+  </div>
+  <div class="footer-tag"><strong>Takeaway</strong>The integration is a governance chain, not just a file-level merge
+    between two projects.</div>
+</div>

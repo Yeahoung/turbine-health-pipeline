@@ -1,0 +1,80 @@
+[
+  {
+    "id": "slide-1",
+    "title": "Title",
+    "file": "01-title.html",
+    "notes": "Open with the system identity, not the model details.\n\nSay this is an AI-assisted decision-support prototype for wind turbine operations.\n\nEmphasise the three-part thesis: diagnosis, explanation, and advisory optimisation.\n\nMost important line: the AI does not directly control a real turbine."
+  },
+  {
+    "id": "slide-2",
+    "title": "Problem",
+    "file": "02-problem.html",
+    "notes": "Use this slide to create the engineering pain point.\n\nDo not say 'AI can solve everything'. Say the real gap is between fault detection and operator action.\n\nFrame the project as decision support on top of existing SCADA, not a hardware replacement."
+  },
+  {
+    "id": "slide-3",
+    "title": "System Overview",
+    "file": "03-system-overview.html",
+    "notes": "Explain the three coordinated flows clearly.\n\nMain flow: SCADA to operator briefing.\n\nRL is simulation advisory, and operators remain final decision-makers."
+  },
+  {
+    "id": "slide-4",
+    "title": "Pipeline",
+    "file": "04-pipeline.html",
+    "notes": "Use the clickable stages if you want to slow down the explanation.\n\nWalk left to right on the main flow first. Then mention RL comes in from the side as advisory input.\n\nDo not call it model fusion. Call it a governance chain."
+  },
+  {
+    "id": "slide-5",
+    "title": "Metadata",
+    "file": "05-metadata.html",
+    "notes": "This is the white-box slide.\n\nSay that downstream modules do not consume opaque latent vectors. They consume interpretable turbine-day indicators.\n\nThis is the strongest explanation slide for your explainable-AI point."
+  },
+  {
+    "id": "slide-6",
+    "title": "RL Advisory Module",
+    "file": "06-rl-advisory.html",
+    "notes": "Keep RL grounded in simulation.\n\nExplain multi-objective balancing: power capture, load reduction, and smoothness.\n\nReinforce advisory-only constraint."
+  },
+  {
+    "id": "slide-7",
+    "title": "Case Study",
+    "file": "07-case-study.html",
+    "notes": "Show three turbine-day cases with different health states.\n\nEmphasize decision guidance, not just anomaly detection.\n\nTie each case to control posture."
+  },
+  {
+    "id": "slide-8",
+    "title": "Explainable & Controllable AI",
+    "file": "08-explainable-ai.html",
+    "notes": "This slide defines why the AI behavior is interpretable and controllable.\n\nExplain metadata, explicit safety rules, and transparent objectives.\n\nReinforce human final authority."
+  },
+  {
+    "id": "slide-9",
+    "title": "Engineering Value",
+    "file": "09-engineering-value.html",
+    "notes": "Highlight value across operations, maintenance, sustainability, and carbon impact.\n\nStress that novelty is system-level integration, not only model score."
+  },
+  {
+    "id": "slide-10",
+    "title": "Deployment Path",
+    "file": "10-deployment-path.html",
+    "notes": "Move from demo to roadmap.\n\nState current prototype capabilities and future development directions.\n\nEnd with scalable long-term vision."
+  },
+  {
+    "id": "slide-10b",
+    "title": "Live Demo",
+    "file": "10b-live-demo.html",
+    "notes": "Transition from Theory to Practice.\n\nShow the seamless flow from SCADA to AI advisory report.\n\nEngage the audience to observe the live speed and reasoning of the model."
+  },
+  {
+    "id": "slide-11",
+    "title": "Conclusion",
+    "file": "11-conclusion.html",
+    "notes": "Finish with the responsible-AI message.\n\nRepeat the safety principle: advisory only, not autonomous control.\n\nPause after the final takeaway sentence."
+  },
+  {
+    "id": "slide-12",
+    "title": "Thank You",
+    "file": "12-thank-you.html",
+    "notes": "Thank the audience.\n\nInvite questions and discussion.\n\nKeep it brief."
+  }
+]

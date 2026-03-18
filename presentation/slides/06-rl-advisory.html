@@ -1,0 +1,43 @@
+<div class="slide-inner shell section-shell">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Reinforcement Learning Advisory Module</div>
+      <h2>Simulation-backed optimization guidance under explicit safety constraints.</h2>
+    </div>
+    <p>
+      The RL component explores operation strategies in simulation and balances power capture,
+      structural load reduction, and control smoothness. RL is included as evidence-backed advisory logic.
+    </p>
+  </div>
+  <div class="rl-grid">
+    <article class="problem-card">
+      <div class="panel-title">Optimization objectives</div>
+      <ul>
+        <li>Power capture under changing wind conditions.</li>
+        <li>Structural load reduction for safer operation.</li>
+        <li>Control smoothness to avoid aggressive control actions.</li>
+      </ul>
+      <div class="problem-highlight">RL does not control real turbines. It provides advisory optimization guidance filtered by the health gate.</div>
+    </article>
+    <article class="problem-card">
+      <div class="panel-title">Important constraint</div>
+      <p>
+        Simulation exploration is useful because risky strategies can be tested before any operational adoption.
+      </p>
+    </article>
+  </div>
+  <div class="rl-grid" style="margin-top: 16px;">
+    <article class="plot-card">
+      <div class="panel-title">Episode comparison</div>
+      <p>RL training progress across episodes.</p>
+      <img class="zoomable" src="plots/episode_comparison.png" alt="Episode comparison chart" data-caption="Episode comparison">
+    </article>
+    <article class="plot-card">
+      <div class="panel-title">Reward distribution</div>
+      <p>Reward signal distribution across objectives.</p>
+      <img class="zoomable" src="plots/reward_distribution.png" alt="Reward distribution chart" data-caption="Reward distribution">
+    </article>
+  </div>
+  <div class="callout-row"><button class="callout-btn" data-target="slide-7">Jump to case study</button></div>
+  <div class="footer-tag"><strong>Takeaway</strong>RL adds optimization insight in simulation, while final operational authority remains with human operators.</div>
+</div>

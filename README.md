@@ -56,23 +56,45 @@ The pipeline contains three stages:
 
 ## Running the Pipeline
 
-The entry point is:
-
-```
-main.py
-```
-
-A sample input file is provided:
-
-```
-data/raw/2016_01_01.csv
-```
-
-Run:
+### Option 1: Command Line (`main.py`)
 
 ```
 python main.py
 ```
+
+Requires sample data in `data/raw/` (or symlink `data/demo/` to `data/raw/`).
+
+### Option 2: Streamlit App
+
+```
+streamlit run app.py
+```
+
+Opens the interactive dashboard at http://localhost:8501 with Diagnostic Pipeline and RL Control Simulation tabs.
+
+### Option 3: Local Development (Presentation + App)
+
+```
+./start_all.sh
+# or: make start-all
+```
+
+- **Presentation:** http://localhost:8000  
+- **App:** http://localhost:8501  
+- Live Demo slide embeds the app when on port 8000.
+
+### Option 4: Docker (Full-Stack)
+
+```
+docker compose up --build
+# or: make docker-up
+```
+
+Single container serves both Presentation and App at **http://localhost:8080**:
+
+- **Presentation:** http://localhost:8080/
+- **App:** http://localhost:8080/app/
+- Live Demo slide embeds the app via same-origin `/app/`.
 
 The pipeline will:
 
@@ -108,22 +130,31 @@ run_summary.csv
 project_root
 │
 ├─ main.py
+├─ app.py
 │
 ├─ pipeline
 │   ├─ label_anomalies.py
 │   ├─ build_metadata.py
 │   └─ generate_reports.py
 │
-├─ data
-│   ├─ raw
-│   │   └─ 2016_01_01.csv
-│   │
-│   └─ processed
-│       └─ (training tables used for model fine-tuning)
+├─ presentation        <- (Reveal.js slides; embeds app in Live Demo)
+│   ├─ slides/
+│   ├─ build.js
+│   └─ public/         <- (built output)
 │
-└─ out
-
-
+├─ rl_agent            <- (Reinforcement Learning: PPO vs rule-based)
+│
+├─ data
+│   ├─ demo/           <- (default demo data for app)
+│   ├─ raw/            <- (for main.py; or symlink to demo)
+│   └─ processed/      <- (training tables for model fine-tuning)
+│
+├─ .streamlit/         <- (config for iframe embedding)
+├─ nginx.conf          <- (Docker: static + Streamlit proxy)
+├─ Dockerfile
+├─ docker-compose.yml
+├─ docker-entrypoint.sh
+└─ out/
 ```
 
 ---
@@ -140,16 +171,27 @@ A CPU fallback is supported for environments without GPU support.
 
 ---
 
+## Deployment
+
+| Target | Presentation | App |
+|--------|--------------|-----|
+| **Docker** | `localhost:8080/` | `localhost:8080/app/` |
+| **Vercel + HF Spaces** | Deploy `presentation/` to Vercel | Deploy `app.py` to [Hugging Face Spaces](https://huggingface.co/spaces) |
+| **Local (start_all.sh)** | `localhost:8000` | `localhost:8501` |
+
+For Vercel: Presentation Live Demo slide embeds the HF Space URL. Build with `npm run build` in `presentation/`.
+
+For Docker: Model is downloaded from Hugging Face at first pipeline run (requires network).
+
+**Makefile:** `make start-all` | `make run-app` | `make build-presentation` | `make test-rl` | `make docker-up`
+
+---
+
 ## Notes
 
 - This repository focuses on demonstrating a **simple anomaly → metadata → report pipeline**.
-- The processed training tables used during model fine-tuning are stored under:
-
-```
-data/processed
-```
-
-- Additional raw SCADA data can be added to `data/raw/`.
+- The processed training tables used during model fine-tuning are stored under `data/processed`.
+- Demo data is in `data/demo/`; `main.py` expects `data/raw/` (symlink or copy as needed).
 
 ---
 

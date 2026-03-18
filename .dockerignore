@@ -1,0 +1,14 @@
+.git
+__pycache__
+*.pyc
+.pytest_cache
+out/
+presentation/node_modules
+presentation/public
+rl_agent/models
+rl_agent/logs
+rl_agent/results
+*.zip
+.env
+.venv
+venv

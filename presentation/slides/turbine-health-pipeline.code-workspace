@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../turbine-health-pipeline"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../Scottish_Power_rl"
+		}
+	],
+	"settings": {}
+}

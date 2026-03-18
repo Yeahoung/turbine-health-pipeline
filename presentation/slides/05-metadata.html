@@ -1,0 +1,40 @@
+<div class="slide-inner shell section-shell">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">Health Metadata Layer</div>
+      <h2>Explainability begins with interpretable turbine-day features.</h2>
+    </div>
+    <p>
+      Instead of sending opaque internal representations downstream, the system aggregates event evidence into a metadata layer that engineers can read, validate, and audit.
+    </p>
+  </div>
+  <div style="margin-bottom: 20px; padding: 20px; border-radius: 16px; background: rgba(15,124,130,0.06); border: 1px solid rgba(15,124,130,0.15); display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+    <i class="fa-solid fa-table-cells slide-icon-xl slide-icon-teal" style="font-size: 3rem;"></i>
+    <p style="margin: 0; color: var(--muted); font-size: 1rem;">Interpretable turbine-day features form a white-box schema — each field maps to measurable evidence.</p>
+  </div>
+  <div class="metadata-grid">
+    <article class="metadata-card">
+      <div class="panel-title">Representative metadata fields</div>
+      <table class="metadata-table">
+        <thead><tr><th>Field</th><th>Meaning</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>event_count</td><td>Number of abnormal events in a turbine-day</td><td>Measures frequency of operational disruption</td></tr>
+          <tr><td>abnormal_duration_min</td><td>Total minutes under abnormal state</td><td>Separates transient issues from persistent conditions</td></tr>
+          <tr><td>dominant_alarm</td><td>Most important alarm family observed</td><td>Anchors the maintenance explanation in evidence</td></tr>
+          <tr><td>severity_level</td><td>Alarm / Attention / Normal</td><td>Directly gates the advisory optimisation posture</td></tr>
+          <tr><td>health_label</td><td>Daily health classification</td><td>Provides the operator-facing summary state</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <article class="metadata-card">
+      <div class="panel-title">Why this supports explainable AI</div>
+      <div class="bullet-list">
+        <div class="bullet-item"><span class="bullet-dot"></span><p>Each feature maps to a measurable turbine property or event statistic.</p></div>
+        <div class="bullet-item"><span class="bullet-dot"></span><p>The LLM summary can cite these fields instead of inventing opaque reasoning paths.</p></div>
+        <div class="bullet-item"><span class="bullet-dot"></span><p>The RL layer is constrained by a health state that is inspectable by engineers.</p></div>
+      </div>
+      <div class="problem-highlight">White-box framing: explainability is achieved by explicit data design before model output is generated.</div>
+    </article>
+  </div>
+  <div class="footer-tag"><strong>Takeaway</strong>Metadata is the bridge between raw telemetry and trustworthy operator guidance.</div>
+</div>
